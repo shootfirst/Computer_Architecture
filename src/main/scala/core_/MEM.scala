@@ -6,6 +6,13 @@ import chisel3.util._
 class MEM extends Module {
   val io = IO(new Bundle {
     val ex  = Flipped(new EX_MEM)
+    //    class EX_MEM extends Bundle {
+    //      val ramOp   = Output(new RAMOp_Output)
+    //      val wrRegOp = Output(new WrRegOp)
+    //      val wrCSROp = Output(new WrCSROp)
+    //      val excep   = new Exception
+    //      var ready   = Input(Bool())
+    //    }
     val mmu = new MMUOp
     val csr = new MEM_CSR
     val reg = new WrRegOp
@@ -15,7 +22,7 @@ class MEM extends Module {
 
   // Lock input
   val ramOp_reg   = RegInit(0.U.asTypeOf(new RAMOp_Output))
-  val reg     = RegInit(0.U.asTypeOf(new WrRegOp))
+  val wrRegOp_reg     = RegInit(0.U.asTypeOf(new WrRegOp))
 
   val wrCSROp_reg = RegInit(0.U.asTypeOf(new WrCSROp))
 
@@ -28,7 +35,7 @@ class MEM extends Module {
 
   when(!stall) {
     ramOp_reg := io.ex.ramOp
-    reg := io.ex.wrRegOp
+    wrRegOp_reg := io.ex.wrRegOp
     wrCSROp_reg := io.ex.wrCSROp
     excep_reg := io.ex.excep
 
@@ -45,9 +52,9 @@ class MEM extends Module {
   io.mmu.wdata := ramOp_reg.wdata
   io.mmu.mode  := ramOp_reg.mode
 
-  io.reg.addr := reg.addr
+  io.reg.addr := wrRegOp_reg.addr
   io.reg.rdy  := true.B
-  io.reg.data := Mux(RAMMode.isRead(ramOp_reg.mode), io.mmu.rdata, reg.data)
+  io.reg.data := Mux(RAMMode.isRead(ramOp_reg.mode), io.mmu.rdata, wrRegOp_reg.data)
 
   io.csr.wrCSROp := wrCSROp_reg
   io.csr.excep := excep_reg
@@ -97,7 +104,7 @@ class MEM extends Module {
   when(io.flush) {
     excep_reg.valid := false.B
     excep_reg.valid_inst := false.B
-    reg.addr := 0.U
+    wrRegOp_reg.addr := 0.U
     wrCSROp_reg.valid := false.B
     ramOp_reg.mode := RAMMode.NOP
   }

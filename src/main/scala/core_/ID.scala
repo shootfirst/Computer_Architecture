@@ -16,9 +16,29 @@ class IDState extends Bundle {
 class ID extends Module {
   val io = IO(new Bundle {
     val iff = Flipped(new IF_ID)  // naming conflict if use `if`
+    //    class IF_ID extends Bundle {
+    //      def pc     = excep.pc
+    //      val inst   = Output(UInt(32.W))
+    //      val excep  = Output(new Exception)
+    //
+    //      val branch = Input(Valid(UInt(32.W)))
+    //      val ready  = Input(Bool())
+    //    }
     val reg = new ID_Reg
-    val ex = new ID_EX
     val csr = new ID_CSR
+    val ex = new ID_EX
+    //    class ID_EX_Output extends Bundle {
+    //      val aluOp      = Output(new ALUOp)
+    //      val wrRegOp    = Output(new WrRegOp)
+    //      val wrCSROp    = Output(new WrCSROp)
+    //      var store_data = Output(UInt(32.W)) // for Store Inst only
+    //      val excep      = Output(new Exception)
+    //    }
+    //
+    //    class ID_EX extends ID_EX_Output {
+    //      var ready = Input(Bool())
+    //    }
+
   
     val flush = Input(Bool())
 
@@ -112,7 +132,7 @@ class ID extends Module {
 
   // deal with different kind inst
 
-  // read-after-load data hazard
+  // read-after-load data hazard, should stall
   val instTypesUsingRs1 = Seq(InstType.R, InstType.I, InstType.S, InstType.B)
   val instTypesUsingRs2 = Seq(InstType.R, InstType.S, InstType.B)
   val rs1Hazard = (rs1Addr === io.exWrRegOp.addr) &&

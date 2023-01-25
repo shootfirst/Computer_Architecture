@@ -21,6 +21,7 @@ class IF extends Module {
 
   val pc_reg         = RegInit(Const.PC_INIT)
   val log_branch_reg = RegInit(0.U.asTypeOf(Valid(UInt(32.W))))
+  // record the instruction failing to shoot because of stall
   val log_inst_reg   = RegInit(0.U.asTypeOf(Valid(UInt(32.W))))
 
   val mmu_inst = Wire(Valid(UInt(32.W)))
@@ -39,6 +40,7 @@ class IF extends Module {
     log_inst_reg.bits := io.mmu.rdata
   }
 
+  // mmu is not ok or read-after-load data hazard
   val stall = !inst.valid || !io.id.ready
 
   // Change status only when mmu.ok

@@ -7,7 +7,26 @@ import OptCode._
 class EX extends Module {
   val io = IO(new Bundle {
     val id  = Flipped(new ID_EX)
+    //    class ID_EX_Output extends Bundle {
+    //      val aluOp      = Output(new ALUOp)
+    //      val wrRegOp    = Output(new WrRegOp)
+    //      val wrCSROp    = Output(new WrCSROp)
+    //      var store_data = Output(UInt(32.W)) // for Store Inst only
+    //      val excep      = Output(new Exception)
+    //    }
+    //
+    //    class ID_EX extends ID_EX_Output {
+    //      var ready = Input(Bool())
+    //    }
+
     val mem = new EX_MEM
+    //    class EX_MEM extends Bundle {
+    //      val ramOp   = Output(new RAMOp_Output)
+    //      val wrRegOp = Output(new WrRegOp)
+    //      val wrCSROp = Output(new WrCSROp)
+    //      val excep   = new Exception
+    //      var ready   = Input(Bool())
+    //    }
 
     val flush = Input(Bool())
   })
