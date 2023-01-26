@@ -8,7 +8,7 @@ riscv手册可参考此网站： https://five-embeddev.com/
 
 ### 五级流水cpu
 
-![avatar](cpu.jpg)
+![avatar](cpu.png)
 
 ### mmu
 
