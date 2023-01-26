@@ -12,6 +12,10 @@ riscv手册可参考此网站： https://five-embeddev.com/
 
 ### mmu
 
++ tlb
+
++ ptw
+
 ### clint与plic
 
 ### cache
