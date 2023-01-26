@@ -14,14 +14,46 @@ riscv手册可参考此网站： https://five-embeddev.com/
 
 + tlb
 
-+ ptw
++ ptw（可以由软件实现）
 
 ### clint与plic
 
-### cache
++ clint
+
++ plic
 
 ### dma与通道
 
++ 轮询
+
++ 中断
+
++ DMA
+
++ 通道
+
+### cache
+
++ MESI协议
+
++ cache组织方式
+
+  - vivt
+
+  - pipt
+
+  - vipt
+
 ### 外设
 
+通过访问数据寄存器，状态寄存器和命令寄存器控制外设
+
 ### 总线
+
++ 通信协议(AXI4-lite)
+
++ 仲裁
+
+### 锁的底层实现
+
+
