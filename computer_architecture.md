@@ -34,15 +34,58 @@ riscv手册可参考此网站： https://five-embeddev.com/
 
 ### cache
 
-+ MESI协议
+##### 多级cache
 
-+ cache组织方式
+  - L1 dcache和icache
 
-  - vivt
+  - L2
 
-  - pipt
+  - L3
 
-  - vipt
+##### 实现原理
+
+  - tag index offset
+
+  - 一路组相联
+
+  - 多路组相联
+
+  - 全相联
+
+##### 跟新策略
+
+  - 写直达
+
+  - 写回
+
+##### 组织方式
+
+歧义：不同页表的相同虚拟地址映射到不同物理地址
+
+别名：相同页表的不同虚拟地址映射到同一物理地址
+
+  - vivt：存在歧义和别名
+
+  - pipt：不存在歧义和别名
+
+  - vipt：不存在歧义，但是可能存在别名，tag是页号
+
+##### 缓存一致性协议：MESI协议
+
+  - 状态：
+
+    + modified
+
+    + exclusive
+
+    + shared
+
+    + invalid
+
+  - store buffer
+
+  - invalid queue
+
 
 ### 外设
 
