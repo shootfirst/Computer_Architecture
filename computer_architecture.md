@@ -2,37 +2,35 @@
 
 本仓库的cpu为带mmu和clint的riscv五级流水线cpu，通过此cpu了解计算机运行的最基本机理
 
-### riscv 
+### RISCV
 
 riscv手册可参考此网站： https://five-embeddev.com/
 
-### 五级流水cpu
+### 五级流水CPU
 
 ![avatar](cpu.png)
 
-### mmu
+### MMU
 
 + tlb
 
 + ptw（可以由软件实现）
 
-### clint与plic
+### CLINT与PLIC
 
 + clint
 
 + plic
 
-### dma与通道
+### DMA与通道
 
 + 轮询
 
 + 中断
 
-+ DMA
++ DMA与通道
 
-+ 通道
-
-### cache
+### CACHE
 
 ##### 多级cache
 
