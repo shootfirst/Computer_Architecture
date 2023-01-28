@@ -84,11 +84,6 @@ riscv手册可参考此网站： https://five-embeddev.com/
 
   - invalid queue
 
-
-### 外设
-
-通过访问数据寄存器，状态寄存器和命令寄存器控制外设
-
 ### 总线
 
 + 通信协议(AXI4-lite)
@@ -98,5 +93,10 @@ riscv手册可参考此网站： https://five-embeddev.com/
 ### 锁的底层实现
 
 riscv的原子指令
+
+### 外设
+
+通过访问数据寄存器，状态寄存器和命令寄存器控制外设
+
 
 
