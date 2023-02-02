@@ -86,7 +86,7 @@ riscv手册可参考此网站： https://five-embeddev.com/
 
 ### 总线
 
-+ 通信协议(AXI4-lite)
++ 通信协议(AXI4-lite，PCIe)
 
 + 仲裁
 
