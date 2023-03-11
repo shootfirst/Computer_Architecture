@@ -28,7 +28,7 @@ riscv手册可参考此网站： https://five-embeddev.com/
 
 + 中断
 
-+ DMA与通道
++ DMA
 
 ### CACHE
 
